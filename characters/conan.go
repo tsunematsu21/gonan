@@ -13,7 +13,7 @@ type Conan interface {
 	DetectiveBoys
 	RealFace
 	Shoot(*gadgets.StunGunWristwatch, SleepingDetective) bool
-	StartChangeVoice(*gadgets.VoiceChangingBowtie, Character)
+	StartChangingVoice(*gadgets.VoiceChangingBowtie, Character)
 	StopChangingVoice()
 }
 
@@ -22,18 +22,28 @@ type conan struct {
 	name         string
 	displayName  string
 	voiceChanger *gadgets.VoiceChangingBowtie
+	isAptxized   bool
 }
 
 func (c *conan) Name() string {
-	return c.name
+	if c.isAptxized {
+		return c.RealName()
+	}
+	return "江戸川コナン"
 }
 
 func (c *conan) Age() int {
-	return c.age
+	if c.isAptxized {
+		return 17
+	}
+	return 7
 }
 
 func (c *conan) DisplayName() string {
-	return c.displayName
+	if c.isAptxized {
+		return "新一"
+	}
+	return "コナン"
 }
 
 func (c *conan) Speek(msg string) {
@@ -49,15 +59,11 @@ func (c *conan) RealName() string {
 }
 
 func (c *conan) Minimize() {
-	c.age = 7
-	c.name = "江戸川コナン"
-	c.displayName = "コナン"
+	c.isAptxized = true
 }
 
 func (c *conan) Maximize() {
-	c.age = 17
-	c.name = "工藤新一"
-	c.displayName = "新一"
+	c.isAptxized = false
 }
 
 func (c *conan) WhoAreYou() {
@@ -73,7 +79,7 @@ func (c *conan) Shoot(sgw *gadgets.StunGunWristwatch, sd SleepingDetective) bool
 	}
 }
 
-func (c *conan) StartChangeVoice(vcb *gadgets.VoiceChangingBowtie, ch Character) {
+func (c *conan) StartChangingVoice(vcb *gadgets.VoiceChangingBowtie, ch Character) {
 	vcb.SetVoice(ch.DisplayName())
 	c.voiceChanger = vcb
 }

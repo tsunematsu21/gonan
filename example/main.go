@@ -22,7 +22,7 @@ func main() {
 
 	conan.Speek("この腕時計型麻酔銃でおっちゃんを眠らせて...")
 	if ok := conan.Shoot(watch, kogoro); ok { // (麻酔銃の音) プシュッ
-		conan.StartChangeVoice(bowtie, kogoro)
+		conan.StartChangingVoice(bowtie, kogoro)
 		conan.Speek("犯人はお前だ！")
 		conan.StopChangingVoice()
 	}
