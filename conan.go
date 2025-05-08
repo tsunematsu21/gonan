@@ -10,6 +10,7 @@ type Conan interface {
 	Detective
 	VoiceChangable
 	AptxCapable
+	WhoAreYou()
 }
 
 type conan struct {
@@ -33,6 +34,10 @@ func (c *conan) DisplayName() string {
 	} else {
 		return "新一"
 	}
+}
+
+func (c *conan) WhoAreYou() {
+	Say(c, fmt.Sprintf("%s、探偵さ", c.Name()))
 }
 
 func (c *conan) changeVoice(target Character) {

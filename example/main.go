@@ -41,13 +41,13 @@ func main() {
 	}
 
 	bowtie.Use(nil)
-	gonan.Say(conan, "真実はいつも一つ！")
+	conan.WhoAreYou()
 
 	conan.Deaptxize()
-	gonan.Say(conan, "真実はいつも一つ！")
+	conan.WhoAreYou()
 
 	conan.Aptxize()
-	gonan.Say(conan, "真実はいつも一つ！")
+	conan.WhoAreYou()
 
 	shinichi := gonan.GetShinichi()
 	if conan == shinichi {
