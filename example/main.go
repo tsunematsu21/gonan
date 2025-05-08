@@ -1,34 +1,49 @@
 package main
 
 import (
-	"github.com/tsunematsu21/gonan/characters"
-	"github.com/tsunematsu21/gonan/gadgets"
+	"fmt"
+
+	"github.com/tsunematsu21/gonan"
 )
 
 func main() {
-	conan := characters.NewConan()
+	conan := gonan.GetConan()
+	kogoro := gonan.GetKogoro()
 
-	conan.Speek("真実はいつも一つ！")
+	watch := gonan.NewStunGunWristWatch(conan)
+	if err := watch.Use(kogoro); err != nil {
+		fmt.Printf("failed to use stun gun wrist watch: %v\n", err)
+	}
+	// (小五郎) ふにゃ...
 
-	conan.WhoAreYou() // (コナン) 江戸川コナン、探偵さ。
-	conan.Maximize()
+	bowtie := gonan.NewVoiceChangingBowtie(conan)
+	bowtie.Use(kogoro)
 
-	conan.WhoAreYou() // (新一) 工藤新一、探偵さ。
-	conan.Minimize()
-
-	kogoro := characters.NewKogoro()
-	watch := gadgets.NewStunGunWristwatch()
-	bowtie := gadgets.NewVoiceChangingBowtie()
-
-	conan.Speek("この腕時計型麻酔銃でおっちゃんを眠らせて...")
-	if ok := conan.Shoot(watch, kogoro); ok { // (麻酔銃の音) プシュッ
-		conan.StartChangingVoice(bowtie, kogoro)
-		conan.Speek("犯人はお前だ！")
-		conan.StopChangingVoice()
+	culprit := gonan.NewMob("山田", "一郎")
+	c, err := gonan.NewCase(
+		gonan.WithVictim(gonan.NewMob("山田次郎", "次郎")),
+		gonan.WithLocation("寝室"),
+		gonan.AddSuspect(culprit, true),
+		gonan.AddSuspect(gonan.NewMob("山田三郎", "三郎"), false),
+	)
+	if err != nil {
+		fmt.Println("failed to open case:", err)
 	}
 
-	conan.Speek("いつものようにおっちゃんを眠らせて...")
-	if ok := conan.Shoot(watch, kogoro); !ok {
-		conan.Speek("しまった！弾切れだ！")
+	t, err := gonan.NewTruth(culprit, "恨んでいたから")
+	if err != nil {
+		fmt.Println("failed to create truth:", err)
 	}
+
+	if err := c.Close(conan, t); err != nil {
+		fmt.Println("failed to close case:", err)
+	}
+	// (変声機:小五郎の声) やっと分かったんですよ...
+	// (変声機:小五郎の声) 寝室で次郎さんを殺害した犯人がね...
+	// (変声機:小五郎の声) 犯人は一郎さん、あなただ！
+	// (変声機:小五郎の声) 犯行の動機はおそらく恨んでいたからでしょう
+
+	bowtie.Use(nil)
+	gonan.Speek(conan, "真実はいつも一つ！")
+	// (コナン) 真実はいつも一つ！
 }
