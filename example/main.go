@@ -11,10 +11,11 @@ func main() {
 	kogoro := gonan.GetKogoro()
 
 	watch := gonan.NewStunGunWristWatch(conan)
+
+	gonan.Say(conan, "この腕時計型麻酔銃でおっちゃんを眠らせて...")
 	if err := watch.Use(kogoro); err != nil {
 		fmt.Printf("failed to use stun gun wrist watch: %v\n", err)
 	}
-	// (小五郎) ふにゃ...
 
 	bowtie := gonan.NewVoiceChangingBowtie(conan)
 	bowtie.Use(kogoro)
@@ -38,20 +39,13 @@ func main() {
 	if err := c.Close(conan, t); err != nil {
 		fmt.Println("failed to close case:", err)
 	}
-	// (変声機:小五郎の声) やっと分かったんですよ...
-	// (変声機:小五郎の声) 寝室で次郎さんを殺害した犯人がね...
-	// (変声機:小五郎の声) 犯人は一郎さん、あなただ！
-	// (変声機:小五郎の声) 犯行の動機はおそらく恨んでいたからでしょう
 
 	bowtie.Use(nil)
-	gonan.Speek(conan, "真実はいつも一つ！")
-	// (コナン) 真実はいつも一つ！
+	gonan.Say(conan, "真実はいつも一つ！")
 
 	conan.Deaptxize()
-	gonan.Speek(conan, "真実はいつも一つ！")
-	// (新一) 真実はいつも一つ！
+	gonan.Say(conan, "真実はいつも一つ！")
 
 	conan.Aptxize()
-	gonan.Speek(conan, "真実はいつも一つ！")
-	// (コナン) 真実はいつも一つ！
+	gonan.Say(conan, "真実はいつも一つ！")
 }

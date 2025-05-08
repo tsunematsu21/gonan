@@ -69,11 +69,13 @@ func (c *Case) Close(detective Character, t *Truth) error {
 		return fmt.Errorf("%s is don't solve", detective.Name())
 	}
 
-	Speek(detective, "やっと分かったんですよ...")
-	Speek(detective, fmt.Sprintf("%sで%sさんを殺害した犯人がね...", c.location, c.victime.DisplayName()))
-	Speek(detective, fmt.Sprintf("犯人は%sさん、あなただ！", t.culprit.DisplayName()))
-	Speek(detective, fmt.Sprintf("犯行の動機はおそらく%sでしょう", t.cause))
-
+	Say(
+		detective,
+		"やっと分かったんですよ...",
+		fmt.Sprintf("%sで%sさんを殺害した犯人がね...", c.location, c.victime.DisplayName()),
+		fmt.Sprintf("犯人は%sさん、あなただ!", t.culprit.DisplayName()),
+		fmt.Sprintf("犯行の動機はおそらく%sでしょう", t.cause),
+	)
 	return nil
 }
 
