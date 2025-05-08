@@ -26,7 +26,7 @@ func (c *kogoro) sleep() error {
 	if c.sleeped {
 		return fmt.Errorf("%s is already sleeped", c.Name())
 	} else {
-		fmt.Printf("(%s) ふにゃ...\n", c.DisplayName())
+		Speek(c, "ふにゃ...")
 		c.sleeped = true
 		return nil
 	}
