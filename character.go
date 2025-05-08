@@ -15,6 +15,11 @@ type VoiceChangable interface {
 	restoreVoice()
 }
 
+type AptxCapable interface {
+	Aptxize()
+	Deaptxize()
+}
+
 type mob struct {
 	name        string
 	displayName string

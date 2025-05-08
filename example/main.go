@@ -46,4 +46,12 @@ func main() {
 	bowtie.Use(nil)
 	gonan.Speek(conan, "真実はいつも一つ！")
 	// (コナン) 真実はいつも一つ！
+
+	conan.Deaptxize()
+	gonan.Speek(conan, "真実はいつも一つ！")
+	// (新一) 真実はいつも一つ！
+
+	conan.Aptxize()
+	gonan.Speek(conan, "真実はいつも一つ！")
+	// (コナン) 真実はいつも一つ！
 }
