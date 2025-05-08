@@ -70,5 +70,12 @@ func GetConan() Conan {
 			aptxized: true,
 		}
 	})
+	singletonConan.aptxized = true
 	return singletonConan
+}
+
+func GetShinichi() Conan {
+	c := GetConan()
+	c.Deaptxize()
+	return c
 }

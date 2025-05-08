@@ -48,4 +48,9 @@ func main() {
 
 	conan.Aptxize()
 	gonan.Say(conan, "真実はいつも一つ！")
+
+	shinichi := gonan.GetShinichi()
+	if conan == shinichi {
+		fmt.Println("conan is shinichi")
+	}
 }

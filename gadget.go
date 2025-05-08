@@ -44,27 +44,29 @@ func (s *stunGunWristWatch) Reload() error {
 	return nil
 }
 
-func NewStunGunWristWatch(user Character) *stunGunWristWatch {
+func NewStunGunWristWatch(user Character) Gadget {
 	return &stunGunWristWatch{
 		owner:    user,
 		magazine: 1,
 	}
 }
 
-type VoiceChangingBowtie struct {
+type voiceChangingBowtie struct {
 	owner VoiceChangable
 }
 
-func (v *VoiceChangingBowtie) Use(target Character) {
+func (v *voiceChangingBowtie) Use(target Character) error {
 	if target == nil {
 		v.owner.restoreVoice()
 	} else {
 		v.owner.changeVoice(target)
 	}
+
+	return nil
 }
 
-func NewVoiceChangingBowtie(user VoiceChangable) *VoiceChangingBowtie {
-	return &VoiceChangingBowtie{
+func NewVoiceChangingBowtie(user VoiceChangable) Gadget {
+	return &voiceChangingBowtie{
 		owner: user,
 	}
 }
